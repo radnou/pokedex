@@ -3,11 +3,13 @@
 
 <div>
   <h4>{{ name }}</h4>
-
+  <b> Age :{{compteur()}}</b>
+  <button (click)="updateSignal()">Happy Birthday</button>
 
   <p>
     <button (click)="decrement()">-</button>
-    Point de vie : {{ life }}
+    Nombre de victoire : {{ wins() }}
     <button (click)="increment()">+</button>
+    <button type="button" (click)="reset()">Reset</button>
   </p>
 </div>
