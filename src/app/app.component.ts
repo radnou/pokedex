@@ -1,9 +1,13 @@
-import {Component, signal} from '@angular/core';
+import {Component, computed, effect, signal} from '@angular/core';
+import {DecimalPipe, TitleCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [
+    DecimalPipe,
+    TitleCasePipe
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -13,7 +17,13 @@ export class AppComponent {
   title: string = "Pokedex";
   name: string = "Pikachu";
   wins = signal(21);
-  protected readonly onclick = onclick;
+  experience = computed(() => this.wins() * 0.23);
+
+  constructor() {
+    effect(() => {
+      console.log("L'experience a été mis à jour : " + Date.now());
+    });
+  }
 
   increment() {
     this.wins.update(n => n + 1);
